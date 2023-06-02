@@ -5,7 +5,8 @@ O Brother-InCode tem como objetivo facilitar o contato entre tutores e alunos vi
 
 > ### Para executar o programa:
 
-- Certifique-se de ter feito o download dos arquivos corretamente e de possuir a mais nova versão do `Python` instalada localmente.
+- Primeiramente, é necessário baixar e instalar o [Python](https://www.python.org/).
+- Certifique-se de ter feito o download dos arquivos corretamente.
 - Uma vez dentro do diretório, é necessário criar um **Virtual Environment** (Ambiente Virtual), para isolar as modificações e instalações de Python/Django do projeto com outros arquivos e diretórios do seu computador.
   > **Dica:** realizar todos os passos a seguir estando, dentro do terminal, no diretório em que o arquivo `manage.py` se encontra.
 
