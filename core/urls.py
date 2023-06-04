@@ -29,6 +29,7 @@ urlpatterns = [
     path('tutor/<int:id_tutor>/', views.perfil_tutor, name='detalhe_tutor'),
     path('tutorias/', tutorias, name='tutorias'),
     path('perfil/', views.perfil_usuario, name='perfil_usuario'),
+    path('logout/', views.logoutusuario, name='deslogar'),
     path('login/', include('django.contrib.auth.urls')),
     path('login/', views.loginusuario, name='login'),
     path('cadastro/', views.cadastro, name='cadastro'),
