@@ -1,10 +1,28 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from .serializers import *
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
 
 #By Carlos
 
 #Fim by Carlos
+
+def loginusuario(request):
+    if request.method == "POST":
+        username = request.POST['nome']
+        password = request.POST['senha']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('lista_tutores')
+        else:
+            messages.success(request, ("Houve um problema...tenta de novo!"))
+            return redirect('login')
+    
+    
+    else:
+        return render(request, 'brotherInCode/login.html', {})
 
 def lista_tutores(request):
     res = []
@@ -83,8 +101,8 @@ def tutorias(request):
 def quem_somos(request):
     return render(request, 'brotherInCode/quem somos.html')
 
-def login(request):
-    return render(request, 'brotherInCode/login.html')
+#def login(request):
+#    return render(request, 'brotherInCode/login.html')
 
 def cadastro(request):
     return render(request, 'brotherInCode/joinUs.html')
