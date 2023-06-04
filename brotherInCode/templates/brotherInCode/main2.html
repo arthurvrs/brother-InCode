@@ -17,8 +17,12 @@
                 > Brother-InCode
             </div>
             <div id="Login">
-                <a href="{% url 'login' %}">Login</a>
-            </div>
+				{% if user.is_authenticated %}
+				<a href="{% url 'deslogar' %}">Logout</a>
+				{% else %}
+				<a href="{% url 'login' %}">Login</a>
+				{% endif %}
+			</div>
             <div id="topo-menu">
                 <ul style="list-style: none; margin: 0; padding: 0;">
                     <li><a href="" class="selected"><img src="../static/img/image 4.png" class="icone"> Orientações</a>
