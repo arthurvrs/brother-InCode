@@ -8,6 +8,10 @@ from django.contrib import messages
 
 #Fim by Carlos
 
+def logoutusuario(request):
+    logout(request)
+    return redirect('lista_tutores')
+
 def loginusuario(request):
     if request.method == "POST":
         username = request.POST['nome']
@@ -17,7 +21,7 @@ def loginusuario(request):
             login(request, user)
             return redirect('lista_tutores')
         else:
-            messages.success(request, ("Houve um problema...tenta de novo!"))
+            messages.success(request, ("Username ou Senha Incorreto(s)."))
             return redirect('login')
     
     
