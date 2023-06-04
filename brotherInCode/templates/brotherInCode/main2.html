@@ -36,41 +36,169 @@
         </div>
     </div>
     <div id="corpo">
+        <div id="../static/img-container">
+			<img src="../static/img/inicio.png" class="fundo" style="padding: 10px">
+			<figcaption><span class="titulo" style="position: absolute;width: 509px;height: 70px;left: 600px;top: 280px;font-family: 'Fira Code', monospace;font-style: normal;font-weight: 300;font-size: 53px;line-height: 70px;color: #00B907">> Brother-InCode</span>
+				<span class="texto" style="position: absolute;width: 300px;height: 70px;left: 700px;top: 350px;text-align: justify;font-family: 'Fira Code', monospace;font-style: normal;font-weight: 600;font-size: 20px;line-height: 26px;color: black;">/* desenvolva suas habilidades de programação e outras áreas com o Brother-InCode -
+					seu parceiro em tecnologia! */</span>
+			</figcaption>
+		</div>
+
+        <div id="texto-corpo-dif">
+            <p>Conheça nossos tutores especializados e desbloqueie seu potencial!</p>
+        </div>
         <div id="img-container">
         </div>
 
         <div id="sobre2" style="position:fixed; margin-top: 2%; margin-right: 13%;">
-
-
             <h2>SEJA BEM-VINDO(A)</h2>
             <p style="text-align: justify; color: #000;">Brother-InCode</p>
             <p style="color: #000;">Um espaço para todo e qualquer programador.</p>
-
-
         </div>
 
+        <script>
+            function buscarTutor() {
+                var busca = document.getElementById("busca").value.toUpperCase();
+                var tutores = document.getElementsByClassName('tutor');
+        
+                for (var i = 0; i < tutores.length; i++) {
+                    var nomeTutor = tutores[i].getAttribute('data-nome').toUpperCase();
+                    var tutorElemento = tutores[i];
+        
+                    if (nomeTutor.includes(busca)) {
+                        tutorElemento.style.display = 'inline-flex';
+                    } else {
+                        tutorElemento.style.display = 'none';
+                    }
+                }
+            }
+
+            function ordenarTutores() {
+                var selecionado = document.getElementById("ordenacao").value;
+                var tutores = document.getElementsByClassName('tutor');
+                var listaTutores = Array.prototype.slice.call(tutores);
+        
+                switch (selecionado) {
+                    case "nome":
+                        listaTutores.sort(function(a, b) {
+                            var nomeA = a.getAttribute('data-nome').toUpperCase();
+                            var nomeB = b.getAttribute('data-nome').toUpperCase();
+                            if (nomeA < nomeB) {
+                                return -1;
+                            }
+                            if (nomeA > nomeB) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+                        break;
+
+                    case "nome-inv":
+                        listaTutores.sort(function(a, b) {
+                            var nomeA = a.getAttribute('data-nome').toUpperCase();
+                            var nomeB = b.getAttribute('data-nome').toUpperCase();
+                            if (nomeA > nomeB) {
+                                return -1;
+                            }
+                            if (nomeA < nomeB) {
+                                return 1;
+                            }
+                            return 0;
+                        });
+                        break;
+        
+                    case "avaliacao":
+                        listaTutores.sort(function(a, b) {
+                            var estrelasA = a.getElementsByClassName('botao_icon').length;
+                            var estrelasB = b.getElementsByClassName('botao_icon').length;
+                            return estrelasB - estrelasA;
+                        });
+                        break;
+
+                    case "avaliacao-inv":
+                        listaTutores.sort(function(a, b) {
+                            var estrelasA = a.getElementsByClassName('botao_icon').length;
+                            var estrelasB = b.getElementsByClassName('botao_icon').length;
+                            return estrelasA - estrelasB;
+                        });
+                        break;
+        
+                    case "capacitacoes":
+                        listaTutores.sort(function(a, b) {
+                            var capacitacoesA = a.getElementsByClassName('capacitacoes')[0].children.length;
+                            var capacitacoesB = b.getElementsByClassName('capacitacoes')[0].children.length;
+                            return capacitacoesB - capacitacoesA;
+                        });
+                        break;
+
+                    case "capacitacoes-inv":
+                        listaTutores.sort(function(a, b) {
+                            var capacitacoesA = a.getElementsByClassName('capacitacoes')[0].children.length;
+                            var capacitacoesB = b.getElementsByClassName('capacitacoes')[0].children.length;
+                            return capacitacoesA - capacitacoesB;
+                        });
+                        break;
+
+                    case "original":
+                        var listaOrdenada = document.getElementById('lista-tutores');
+                        var tutores = listaOrdenada.children;
+                        var listaTutores = Array.prototype.slice.call(tutores);
+                        listaTutores.reverse();
+                        listaOrdenada.innerHTML = "";
+                        listaTutores.forEach(function(tutor) {
+                            listaOrdenada.appendChild(tutor);
+                        });
+                        break;
+        
+                    default:
+                        break;
+                }
+        
+                var listaOrdenada = document.getElementById('lista-tutores');
+                listaOrdenada.innerHTML = "";
+                listaTutores.forEach(function(tutor) {
+                    listaOrdenada.appendChild(tutor);
+                });
+            }
+        
+            
+        </script>
+
+        <input type="text" id="busca" onkeyup="buscarTutor()" placeholder="Buscar por nome">
+        
+        <select id="ordenacao" onchange="ordenarTutores()" style="position: relative; margin: 10px; border-radius: 10px; height: 30px; left:130px;
+        margin-bottom: 4%; font-size: large; background: #D9D9D9;box-shadow: inset 0px 0px 10px 4px rgba(0, 0, 0, 0.25);border-radius: 10px;text-indent: 10px;">
+            <option value="original">Filtro de Ordenação</option>
+            <option value="nome">Ordem alfabética (A-Z)</option>
+            <option value="nome-inv">Ordem alfabética (Z-A)</option>
+            <option value="avaliacao">Maior avaliação</option>
+            <option value="avaliacao-inv">Menor avaliação</option>
+            <option value="capacitacoes">Mais capacitações</option>
+            <option value="capacitacoes-inv">Menos capacitações</option>
+        </select>
+	
         <div id="texto-corpo2">
             <!--Corpo link para clique tutoria-->
-            {% for tutor in tutores %}
-            <ul>
-                <li style="list-style: none; display: inline-block;">
+            
+            <ul id="lista-tutores">
+                {% for tutor in tutores %}
+                <li class="tutor" data-nome="{{ tutor.nome }}" style="list-style: none; display: inline-flex; padding:20px">
                     <a href="{% url 'detalhe_tutor' id_tutor=tutor.id_tutor %}">
-                        <h2 style="position:static; margin-left: 90px; margin-top: 20px; float: left;">
-                            <ion-icon name="person"
-                                style="position: static;margin-left: 20px; margin-right: 20px;"></ion-icon>
+                        <h2 style="position:static; margin-left: 90px; margin-top: 20px; float: left; width: 300px">
+                            <ion-icon name="person" style="position: static;margin-left: 20px; margin-right: 20px;"></ion-icon>
                             {{ tutor.nome }}
                         </h2>
-
+            
                         <!--Mostragem de suas competências-->
-                        <h2 style=" float: right; margin-top: 22px; margin-left: -210px;">Capacitações:</h2>
-                        <ul style="float: right; margin-top: 25px; margin-right: -42%;">
+                        <h2 style="float: right; margin-top: 22px; margin-left: -700px; width: 150px">Capacitações:</h2>
+                        <ul class="capacitacoes" style="float: right; margin-top: 25px; margin-right: -33%; width: 200px;">
                             {% for especializacao in tutor.especializacoes %}
-                            <li>{{ especializacao.descricao }}</li>
+                            <li>• {{ especializacao.descricao }}</li>
                             {% endfor %}
                         </ul>
-
+            
                         <!--Mostragem de avaliação com base nos usuários-->
-                        <div style="float: left; margin-left: -20%; padding: -25px; margin-top: 60px;">
+                        <div style="float: left; margin-left: -30%; padding: -25px; margin-top: 60px; width: 100px">
                             {% for estrela in tutor.estrelas %}
                             <span class="botao_icon">
                                 <ion-icon name="star"></ion-icon>
@@ -79,8 +207,9 @@
                         </div>
                     </a>
                 </li>
+                {% endfor %}
             </ul>
-            {% endfor %}
+            
         </div>
 
         <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
