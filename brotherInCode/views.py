@@ -118,8 +118,10 @@ def tutorias(request):
             'area_do_conhecimento': tutoria.id_sub_area_conhecimento.nome,
             'link': tutoria.link,
         })
-    
-    return render(request, 'brotherInCode/tutorias.html', {'tutorias': res})
+    if res == []:
+        return render(request, 'brotherInCode/tutorias.html', {'tutorias': None})
+    else:    
+        return render(request, 'brotherInCode/tutorias.html', {'tutorias': res})
 
 def quem_somos(request):
     return render(request, 'brotherInCode/quem somos.html')
