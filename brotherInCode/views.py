@@ -105,7 +105,7 @@ def perfil_usuario(request):
 
 def tutorias(request):
     res = []
-    tutorias = Tutoria.objects.filter(id_aluno=request.user.id) #+ Tutoria.objects.filter(id_tutor=request.user.id)
+    tutorias = Tutoria.objects.filter(id_aluno__id_user=request.user.id) #+ Tutoria.objects.filter(id_tutor=request.user.id)
     for tutoria in tutorias:
         res.append({
             'id_tutoria': tutoria.id_tutoria,
