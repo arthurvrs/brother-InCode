@@ -81,7 +81,10 @@ def perfil_usuario(request):
     try:
         usuario = Alunos.objects.get(id_user=user)
     except:
-        usuario = Tutores.objects.get(id_user=user)
+        try:
+            usuario = Tutores.objects.get(id_user=user)
+        except:
+            return render(request, 'brotherInCode/perfil.html', {'usuario': ''})
 
     res = {
         'id': usuario.pk,

@@ -38,6 +38,13 @@
 	</div>
 	<div id="corpo">
 		<div id="perfil">
+			{% if usuario == '' %}
+			<div id="texto-corpo">
+				<h1>Ops, você não está <span class="marked">logado(a)!</span> Faça o <span class="marked"><a
+							href="{% url 'login' %}">Login</a></span>
+					para continuar.</h1>
+			</div>
+			{% else %}
 			<div id="texto-perfil">
 				<form>
 					<label for="username">Usuário:</label><br>
@@ -73,6 +80,7 @@
 				<button type="button">Editar foto</button>
 			</div>
 		</div>
+		{% endif %}
 	</div>
 </body>
 
