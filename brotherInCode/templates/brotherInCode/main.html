@@ -72,6 +72,13 @@
                         {% endfor %}
                     </ul>
                 </div>
+                <h2>Contatos:</h2>
+                
+                    <ul>
+                        <h3><li>Email: {{ tutor.email }}</li></h3>
+                        <!--<li>{{ tutor. }}</li>-->
+                    </ul>
+                
             </div>
             <br><br><br><br><br><br><br><br><br><br><br><br><br>
             <div id="areas" style="margin-left: 10px;">
@@ -83,11 +90,13 @@
                 </ul>
             </div>
             <div id="botao">
+                <!--
                 <a href="#">
                     <span class="botao_icon" style="left: 10%;">
                         <ion-icon name="chatbubbles-outline"></ion-icon>
                     </span>
                 </a>
+                -->
             </div>
             <div id="botao">
                 <a href="{% url 'matricula' %}">Matrícula</a>
