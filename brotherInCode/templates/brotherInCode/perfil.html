@@ -13,7 +13,7 @@
 	<div id="container">
 		<div>
 			<div class="logo">
-				> Brother-InCode
+				<a href="{% url 'lista_tutores' %}">> Brother-InCode</a>
 			</div>
 			<div id="Login">
 				{% if user.is_authenticated %}
@@ -49,12 +49,20 @@
 					<label for="email">E-mail:</label><br>
 					<input type="text" id="email" name="email" placeholder="{{ usuario.email }}"
 						onclick="clearInput(this)"><br>
+					{% if usuario.especializacoes != null %}
 					<label for="disciplinas">Sobre:</label><br>
 					<input type="text" id="disciplinas" class="disciplinas" name="sobre"
 						placeholder="{{ usuario.sobre }}"><br>
+					{% endif %}
+					{% if usuario.especializacoes == null %}
+					<label for="disciplinas">Interesses:</label><br>
+					<input type="text" id="disciplinas" class="disciplinas" name="especializacoes"
+						placeholder="{{ usuario.interesses|linebreaksbr }}"><br>
+					{% else %}
 					<label for="disciplinas">Especializações:</label><br>
 					<input type="text" id="disciplinas" class="disciplinas" name="especializacoes"
 						placeholder="{{ usuario.especializacoes|linebreaksbr }}"><br>
+					{% endif %}
 					<button type="button" class="salvar" onclick="alert('As alterações foram salvas!')">Salvar
 						alterações</button>
 					<button type="button" class="cancelar" onclick="alert('Alterações descartadas!')">Cancelar</button>

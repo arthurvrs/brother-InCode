@@ -48,7 +48,7 @@ class InteresseAlunoSerializer(serializers.ModelSerializer):
     
     def to_representation(self, obj):
         return {
-            'id_interesse': obj.id_interesse,
+            'id_interesse': obj.id_interesse_aluno,
             'id_aluno': obj.id_aluno.pk,
             'area_do_conhecimento': obj.id_sub_area_conhecimento.nome,
         }

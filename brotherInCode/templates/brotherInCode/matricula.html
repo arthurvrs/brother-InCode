@@ -13,43 +13,43 @@
   <div id="container">
     <div>
       <div class="logo">
-        > Brother-InCode
+        <a href="{% url 'lista_tutores' %}">> Brother-InCode</a>
       </div>
       <div id="Login">
-				{% if user.is_authenticated %}
-				<a href="{% url 'deslogar' %}">Logout</a>
-				{% else %}
-				<a href="{% url 'login' %}">Login</a>
-				{% endif %}
-			</div>
+        {% if user.is_authenticated %}
+        <a href="{% url 'deslogar' %}">Logout</a>
+        {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </div>
       <div id="topo-menu">
       </div>
     </div>
   </div>
   <div id="corpo">
     <div id="texto-corpo">
-        <br>
-        <h1><span class="marked">Matrícula</span></h1>
-        <br><br>
-        {% if submitted %}
-            <div id="rodape">				
-                <h4>Sua matrícula foi realizada com sucesso!</h4>			
-            </div>
-        {% else %}
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <div>
-                    <input id="entrarLogin" type="submit" name="submit" value="Pronto">
-                </div>
+      <br>
+      <h1><span class="marked">Matrícula</span></h1>
+      <br><br>
+      {% if submitted %}
+      <div id="rodape">
+        <h4>Sua matrícula foi realizada com sucesso!</h4>
+      </div>
+      {% else %}
+      <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div>
+          <input id="entrarLogin" type="submit" name="submit" value="Pronto">
+        </div>
 
-            </form>
-        {% endif %}
-        
+      </form>
+      {% endif %}
+
     </div>
-    </div>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  </div>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
