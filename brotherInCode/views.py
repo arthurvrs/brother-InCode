@@ -1,10 +1,48 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 from .serializers import *
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from .forms import Matricula
 
 #By Carlos
 
 #Fim by Carlos
+
+def matricula(request):
+    submitted = False
+    #se o formulario foi postado 
+    if request.method == "POST":
+        form = Matricula(request.POST)
+        if form.is_valid():
+            form.save()
+            submitted = True
+            return redirect('lista_tutores')
+    else:
+        form = Matricula
+        submitted == True
+
+    return render(request, 'brotherInCode/matricula.html', {'form': form})
+
+def logoutusuario(request):
+    logout(request)
+    return redirect('lista_tutores')
+
+def loginusuario(request):
+    if request.method == "POST":
+        username = request.POST['nome']
+        password = request.POST['senha']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('lista_tutores')
+        else:
+            messages.success(request, ("Username ou Senha Incorreto(s)."))
+            return redirect('login')
+    
+    
+    else:
+        return render(request, 'brotherInCode/login.html', {})
 
 def lista_tutores(request):
     res = []
@@ -83,8 +121,8 @@ def tutorias(request):
 def quem_somos(request):
     return render(request, 'brotherInCode/quem somos.html')
 
-def login(request):
-    return render(request, 'brotherInCode/login.html')
+#def login(request):
+#    return render(request, 'brotherInCode/login.html')
 
 def cadastro(request):
     return render(request, 'brotherInCode/joinUs.html')

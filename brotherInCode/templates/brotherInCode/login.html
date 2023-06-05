@@ -20,23 +20,38 @@
 		<a href="{% url 'lista_tutores' %}"> Brother-InCode</a>
 	</div>
 	<div id="LoginTela">
+		<div id="rodape">
+			{% if messages %}
+				{% for message in messages %}
+				<h4>{{ message }}</h4>
+				{% endfor %}
+			{% endif %}
+		</div>
 		<div class="logo" style="padding: 15px 50px; margin-bottom: 10%;">
 			> Login
 		</div>
+		<form action="" method=POST>
+				{% csrf_token %}
 		<div>
-			<input type="text" name="nome" placeholder="UserName/Email" onclick="clearInput(this)">
+			<input type="text" class="form-control" name="nome" placeholder="UserName/Email" onclick="clearInput(this)">
 		</div>
 		<div>
-			<input type="password" name="nome" placeholder="Senha" onclick="clearInput(this)">
+			<input type="password" name="senha" placeholder="Senha" onclick="clearInput(this)">
 		</div>
-		<div id="entrarLogin">
+		<div>
+			<input id="entrarLogin" type="submit" name="submit" value="Entrar">
+		</form>	
+		<!--
 			<a href="#">
 				Entrar
 			</a>
+		-->	
 		</div>
+		<!--
 		<div id="preregister">
 			<a href="">Esqueceu a senha?</a>
 		</div>
+		-->
 		<div id="divisor"></div>
 		<div id="preregister" style="color: black">
 			Não é registrado?
