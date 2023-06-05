@@ -3,10 +3,26 @@ from .models import *
 from .serializers import *
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from .forms import Matricula
 
 #By Carlos
 
 #Fim by Carlos
+
+def matricula(request):
+    submitted = False
+    #se o formulario foi postado 
+    if request.method == "POST":
+        form = Matricula(request.POST)
+        if form.is_valid():
+            form.save()
+            submitted = True
+            return redirect('lista_tutores')
+    else:
+        form = Matricula
+        submitted == True
+
+    return render(request, 'brotherInCode/matricula.html', {'form': form})
 
 def logoutusuario(request):
     logout(request)
