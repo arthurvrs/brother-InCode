@@ -22,26 +22,30 @@
 		<div class="logo" style="padding: 15px 50px;">
 			> Cadastro
 		</div>
-		<div>
-			<input type="email" name="email" placeholder="Email" onclick="clearInput(this)">
-		</div>
-		<div>
-			<input type="text" name="nome" placeholder="UserName" onclick="clearInput(this)">
-		</div>
-		<div>
-			<input type="password" name="password" placeholder="Senha" onclick="clearInput(this)">
-		</div>
-		<div style="margin-left: 15%; font-size: medium;">
-			<input type="radio" name="tutor" id="">Tutor
-		</div>
-		<div style="margin-left: 15%; font-size: medium;">
-			<input type="radio" name="tutor" id="">Aluno
-		</div>
-		<div id="entrarLogin" style="margin-top: 2%;">
-			<a href="{% url 'perfil_usuario' %}">
-				Registrar
-			</a>
-		</div>
+		<form action="" method=POST>
+			{% csrf_token %}
+			<div>
+				<input type="text" name="nome" placeholder="Nome">
+			</div>
+			<div>
+				<input type="email" name="email" placeholder="Email">
+			</div>
+			<div>
+				<input type="text" name="username" placeholder="UserName">
+			</div>
+			<div>
+				<input type="password" name="password" placeholder="Senha">
+			</div>
+			<div style="margin-left: 15%; font-size: medium;">
+				<input type="radio" name="tutor" id="">Tutor
+			</div>
+			<div style="margin-left: 15%; font-size: medium;">
+				<input type="radio" name="aluno" id="">Aluno
+			</div>
+			<div>
+				<input id="entrarLogin" type="submit" name="submit" value="Registrar">
+			</div>
+		</form>
 		<div id="divisor"></div>
 		<div id="preregister" style="color: black; margin-top: 2%;">
 			Já é cadastrado?

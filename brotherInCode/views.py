@@ -130,4 +130,32 @@ def quem_somos(request):
 #    return render(request, 'brotherInCode/login.html')
 
 def cadastro(request):
-    return render(request, 'brotherInCode/joinUs.html')
+    if request.method == "POST":
+        nome = request.POST['nome']
+        email = request.POST['email']
+        username = request.POST['username']
+        password = request.POST['password']
+        tutor = True if "tutor" in request.POST else False
+        aluno = True if "aluno" in request.POST else False
+        
+        if email and username and password:
+            user = User.objects.create_user(username=username, email=email, password=password)
+        
+        if tutor:
+            Tutores.objects.create(**{
+                'id_user': user,
+                'nome': nome,
+                'email': email,
+            })
+        
+        if aluno:
+            Alunos.objects.create(**{
+                'id_user': user,
+                'nome': nome,
+                'email': email,
+            })
+        user = authenticate(request, username=username, password=password)
+        login(request, user)
+        return redirect('perfil_usuario')
+    else:
+        return render(request, 'brotherInCode/joinUs.html')

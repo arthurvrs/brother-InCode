@@ -25,10 +25,9 @@ class Contas(models.Model):
 class Tutores(models.Model):
     id_tutor = models.AutoField(primary_key=True)
     id_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_conta = models.ForeignKey(Contas, on_delete=models.CASCADE)
+    id_conta = models.ForeignKey(Contas, on_delete=models.CASCADE, null=True, blank=True)
     nome = models.CharField(max_length=255)
     email = models.EmailField()
-    telefone = models.CharField(max_length=11)
     sobre = models.TextField(blank=True, null=True)
     
     class Meta:
@@ -44,7 +43,6 @@ class Alunos(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE)
     nome = models.CharField(max_length=255)
     email = models.EmailField()
-    telefone = models.CharField(max_length=11)
     
     class Meta:
         verbose_name_plural = 'Alunos'

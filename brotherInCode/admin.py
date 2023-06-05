@@ -25,15 +25,15 @@ class TutoresForm(admin.ModelAdmin):
         avaliacoes = AvaliacaoTutor.objects.filter(id_tutor=obj).aggregate(Avg('nota'))
         return avaliacoes['nota__avg']
     
-    list_display = ['nome', 'email', 'telefone', 'nota']
-    search_fields = ['nome', 'email', 'telefone']
+    list_display = ['nome', 'email', 'nota']
+    search_fields = ['nome', 'email']
     inlines = [AvaliacaoTutorInline]
     raw_id_fields = ['id_user', 'id_conta']
 
 
 class AlunosForm(admin.ModelAdmin):
-    list_display = ['nome', 'email', 'telefone']
-    search_fields = ['nome', 'email', 'telefone']
+    list_display = ['nome', 'email']
+    search_fields = ['nome', 'email']
     raw_id_fields = ['id_user']
 
 
