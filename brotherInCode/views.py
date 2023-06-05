@@ -71,6 +71,7 @@ def perfil_tutor(request, id_tutor):
         'especializacoes': EspecializacaoTutorSerializer(especializacoes, many=True).data,
         'estrelas': [0]*int(sum([avaliacao.nota for avaliacao in avaliacoes])/len(avaliacoes)) if len(avaliacoes) > 0 else [0],
         'horarios': HorariosTutorSerializer(horarios, many=True).data,
+        'email': tutor.email,
     }
     
     return render(request, 'brotherInCode/main.html', {'tutor': res})
